@@ -116,6 +116,15 @@
             const stageElem = document.querySelector('.stage');
             let currentItem; //현재 활성화된 아이템을 저장하는 전역변수
 
+            function activate(elem) {
+                elem.classList.add('door-opened');
+                currentItem = elem;
+            }
+
+            function inactivate(elem) {
+                elem.classList.remove('door-opened');
+            }
+
             function doorHandler(e) {
                 const targetElem = e.target;                
 
@@ -125,18 +134,24 @@
                 */
 
                 if (currentItem){
-                    currentItem.classList.remove('door-opened');
+                    //currentItem.classList.remove('door-opened');
+                    inactivate(currentItem);
                 }     
                 
 
                 if (targetElem.classList.contains('door-body')){
                     /*if로 제어해야..stage를 클릭하면 door-opened 안 붙는다*/
-                    targetElem.parentNode.classList.add('door-opened');
-                    currentItem = targetElem.parentNode;
+                    activate(targetElem.parentNode);
+                    //targetElem.parentNode.classList.add('door-opened');
+                    //currentItem = targetElem.parentNode;
                     //현재 활성화된 애를 currentItem에 갱신한다.
                 }                
             }
             stageElem.addEventListener('click', doorHandler);
+
+            //로드될때 문 한개 열고 시작할때
+            
+            activate(document.querySelector('.door:nth-child(1)'));
         })();
     </script>
 </body>
