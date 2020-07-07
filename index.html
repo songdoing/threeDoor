@@ -114,12 +114,26 @@
     <script>
         (function() {
             const stageElem = document.querySelector('.stage');
+            let currentItem; //현재 활성화된 아이템을 저장하는 전역변수
 
             function doorHandler(e) {
-                const targetElem = e.target;
+                const targetElem = e.target;                
+
+                //door-opened를 가지고 있는 애를 뽑아, door-opened를 제거해서 문닫기
+                /* DOM에 접근하는 것 자체가 속도가 느려진다. 
+                const currentItem = document.querySelector('.door-opened');
+                */
+
+                if (currentItem){
+                    currentItem.classList.remove('door-opened');
+                }     
+                
 
                 if (targetElem.classList.contains('door-body')){
+                    /*if로 제어해야..stage를 클릭하면 door-opened 안 붙는다*/
                     targetElem.parentNode.classList.add('door-opened');
+                    currentItem = targetElem.parentNode;
+                    //현재 활성화된 애를 currentItem에 갱신한다.
                 }                
             }
             stageElem.addEventListener('click', doorHandler);
