@@ -78,11 +78,13 @@
         .door:nth-child(3) .door-body {
             background: rgba(0, 0, 255, 0.7);
         }
-        .door:hover .door-body {
+        .door-opened .door-body { /*.door-body의 부모elem에 .door-opened 붙어야*/
+            /*.door:hover .door-body */
             transform: perspective(800px) rotateY(-110deg);            
         }
         /*부모에게...회전체 자체에게 perspective 넣을때 차이가 있다.*/
-        .door:hover .ilbuni {
+        .door-opened .ilbuni {
+            /* .door:hover .ilbuni */
             transform :translate3d(0,0,0);
         }
     </style>
@@ -108,5 +110,20 @@
             <div class="door-body"></div>
         </div>
     </div>
+
+    <script>
+        (function() {
+            const stageElem = document.querySelector('.stage');
+
+            function doorHandler(e) {
+                const targetElem = e.target;
+
+                if (targetElem.classList.contains('door-body')){
+                    targetElem.parentNode.classList.add('door-opened');
+                }                
+            }
+            stageElem.addEventListener('click', doorHandler);
+        })();
+    </script>
 </body>
 </html>
