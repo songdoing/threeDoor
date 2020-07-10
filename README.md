@@ -1,9 +1,11 @@
 # threeDoor
+The doors can be opened by clicking.
 
 ## Technologies
 html, css, JavaScript
 
 ## Samples
+https://songdoing.github.io/threeDoor/
 
 ## Screenshots
 <img src="https://user-images.githubusercontent.com/48890162/87185734-46740100-c2b8-11ea-9245-94dbf756d756.png">
